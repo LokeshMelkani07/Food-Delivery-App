@@ -5,7 +5,7 @@ import { useLocation } from "react-router-dom";
 const Navbar = () => {
   const location = useLocation();
   return (
-    <div>
+    <div style={{ opacity: "0.7" }}>
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
         <div className="container-fluid">
           <Link
@@ -13,8 +13,9 @@ const Navbar = () => {
             to="/"
             style={{
               fontWeight: "bold",
-              color: "#D28F00",
+              color: "white",
               fontFamily: "cursive",
+              opacity: "1 important",
             }}
           >
             F🍔🍔dish
@@ -38,7 +39,7 @@ const Navbar = () => {
                   aria-current="page"
                   to="/"
                   style={{
-                    color: location.pathname === "/" ? "#FAA0A0" : "gray",
+                    color: location.pathname === "/" ? "#FAA0A0" : "white",
                     fontWeight: location.pathname === "/" ? "bold" : "inherit",
                   }}
                 >
@@ -50,7 +51,7 @@ const Navbar = () => {
                   className="nav-link"
                   to="/login"
                   style={{
-                    color: location.pathname === "/login" ? "#FAA0A0" : "gray",
+                    color: location.pathname === "/login" ? "#FAA0A0" : "white",
                     fontWeight:
                       location.pathname === "/login" ? "bold" : "inherit",
                   }}

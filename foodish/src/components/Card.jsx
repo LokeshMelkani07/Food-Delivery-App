@@ -4,7 +4,12 @@ const Card = () => {
   return (
     <div>
       <div className="card mt-3" style={{ width: "18rem", maxHeight: "360px" }}>
-        <img src="..." className="card-img-top" alt="..." />
+        <img
+          src="https://images.unsplash.com/photo-1569246294372-ed319c674f14?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80"
+          className="card-img-top"
+          alt="..."
+          style={{ width: "auto", objectFit: "cover", height: "171px" }}
+        />
         <div className="card-body">
           <h5 className="card-title">Card title</h5>
           <p className="card-text">This is some important text</p>

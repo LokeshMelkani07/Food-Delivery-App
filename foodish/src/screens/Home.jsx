@@ -1,5 +1,6 @@
 import React from "react";
 import Card from "../components/Card";
+import Carousel from "../components/Carousel";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 
@@ -9,7 +10,8 @@ const Home = () => {
       <div>
         <Navbar />
       </div>
-      <div>
+      <Carousel />
+      <div className="m-3">
         <Card />
       </div>
       <div>
