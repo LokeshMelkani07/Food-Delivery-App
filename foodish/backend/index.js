@@ -4,12 +4,16 @@ require("dotenv").config();
 
 const port = process.env.PORT;
 const mongoDB = require("./db");
-
 mongoDB();
 
 app.get("/", (req, res) => {
   res.send("hello world");
 });
+
+// It is important if we want to use app.use middleware
+app.use(express.json());
+// Middleware to use routes
+app.use("/api", require("./Routes/CreateUser"));
 
 app.listen(port, () => {
   console.log(`Backend connected at port ${port}`);
