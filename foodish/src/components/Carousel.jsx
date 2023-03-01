@@ -43,16 +43,16 @@ const Carousel = () => {
           </div>
           <div className="carousel-inner">
             <div className="carousel-caption" style={{ zIndex: "10" }}>
-              <form class="d-flex">
+              <form className="d-flex">
                 <input
-                  class="form-control me-2 bg-light"
+                  className="form-control me-2 bg-light"
                   type="search"
                   placeholder="Search"
                   aria-label="Search"
                   style={{ color: "black" }}
                 />
                 <button
-                  class="btn btn-outline-success text-light"
+                  className="btn btn-outline-success text-light"
                   type="submit"
                   style={{
                     backgroundColor: "black",

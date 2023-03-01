@@ -18,6 +18,7 @@ app.get("/", (req, res) => {
 app.use(express.json());
 // Middleware to use routes
 app.use("/api", require("./Routes/CreateUser"));
+app.use("/api", require("./Routes/DisplayData"));
 
 app.listen(port, () => {
   console.log(`Backend connected at port ${port}`);
