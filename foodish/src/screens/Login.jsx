@@ -36,6 +36,8 @@ const Login = () => {
         progress: undefined,
         theme: "dark",
       });
+      localStorage.setItem("authToken", json.authToken);
+      console.log(localStorage.getItem("authToken"));
       navigate("/");
     } else {
       console.log("Failed to Login");
