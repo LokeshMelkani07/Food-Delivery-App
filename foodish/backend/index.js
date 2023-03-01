@@ -4,6 +4,10 @@ require("dotenv").config();
 
 const port = process.env.PORT;
 const mongoDB = require("./db");
+var cors = require("cors");
+
+// Middleware to use req.body is required
+app.use(cors());
 mongoDB();
 
 app.get("/", (req, res) => {

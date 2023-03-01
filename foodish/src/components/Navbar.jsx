@@ -59,6 +59,20 @@ const Navbar = () => {
                   Login
                 </Link>
               </li>
+              <li className="nav-item">
+                <Link
+                  className="nav-link"
+                  to="/createUser"
+                  style={{
+                    color:
+                      location.pathname === "/createUser" ? "#FAA0A0" : "white",
+                    fontWeight:
+                      location.pathname === "/createUser" ? "bold" : "inherit",
+                  }}
+                >
+                  Signup
+                </Link>
+              </li>
             </ul>
           </div>
         </div>

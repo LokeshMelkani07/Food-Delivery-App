@@ -4,29 +4,34 @@ import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const Login = () => {
+const Signup = () => {
   const [credentials, setCredentials] = useState({
+    name: "",
     email: "",
     password: "",
+    address: "",
   });
   const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const url = "http://localhost:5000/api/loginUser";
+    const url = "http://localhost:5000/api/createUser";
     const response = await fetch(url, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
+        name: credentials.name,
         email: credentials.email,
         password: credentials.password,
+        location: credentials.address,
       }),
     });
+
     const json = await response.json();
     if (json.success) {
-      console.log("Successfully Login");
-      toast.success("Login successfull", {
+      console.log("Successfully signup");
+      toast.success("Account created successfully", {
         position: "top-right",
         autoClose: 3000,
         hideProgressBar: false,
@@ -36,10 +41,10 @@ const Login = () => {
         progress: undefined,
         theme: "dark",
       });
-      navigate("/");
+      navigate("/login");
     } else {
-      console.log("Failed to Login");
-      toast.error("Invalid Credentials", {
+      console.log("Failed to signup");
+      toast.error("Failed to Signup", {
         position: "top-right",
         autoClose: 3000,
         hideProgressBar: false,
@@ -78,10 +83,31 @@ const Login = () => {
                   <div className="row justify-content-center">
                     <div className="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
                       <p className="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">
-                        Log In
+                        Sign up
                       </p>
 
                       <form className="mx-1 mx-md-4" onSubmit={handleSubmit}>
+                        <div className="d-flex flex-row align-items-center mb-4">
+                          <i className="fas fa-user fa-lg me-3 fa-fw"></i>
+                          <div className="form-outline flex-fill mb-0">
+                            <input
+                              type="text"
+                              name="name"
+                              value={credentials.name}
+                              onChange={handleChange}
+                              id="name"
+                              className="form-control"
+                              placeholder="Enter Your Name"
+                              style={{
+                                background: "white",
+                                color: "black",
+                              }}
+                              minLength={3}
+                              required
+                            />
+                          </div>
+                        </div>
+
                         <div className="d-flex flex-row align-items-center mb-4">
                           <i className="fas fa-envelope fa-lg me-3 fa-fw"></i>
                           <div className="form-outline flex-fill mb-0">
@@ -117,10 +143,48 @@ const Login = () => {
                                 background: "white",
                                 color: "black",
                               }}
+                              minLength={5}
                               required
                             />
                           </div>
                         </div>
+
+                        <div className="d-flex flex-row align-items-center mb-4">
+                          <i class="fas fa-key fa-lg me-3 fa-fw"></i>
+                          <div className="form-outline flex-fill mb-0">
+                            <input
+                              type="text"
+                              name="address"
+                              value={credentials.address}
+                              onChange={handleChange}
+                              id="address"
+                              className="form-control"
+                              placeholder="Enter Your Address"
+                              style={{
+                                background: "white",
+                                color: "black",
+                              }}
+                              required
+                            />
+                          </div>
+                        </div>
+
+                        <div className="form-check d-flex justify-content-center mb-5">
+                          <input
+                            className="form-check-input me-2"
+                            type="checkbox"
+                            value=""
+                            id="form2Example3c"
+                          />
+                          <label
+                            className="form-check-label"
+                            htmlFor="form2Example3"
+                          >
+                            I agree all statements in{" "}
+                            <a href="">Terms of service</a>
+                          </label>
+                        </div>
+
                         <div className="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
                           <button
                             type="submit"
@@ -131,17 +195,17 @@ const Login = () => {
                               boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
                             }}
                           >
-                            Login
+                            Register
                           </button>
                         </div>
                         <div className="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
                           <Link
-                            to="/createuser"
+                            to="/login"
                             style={{
                               color: "black",
                             }}
                           >
-                            Already has an account
+                            Already a user
                           </Link>
                         </div>
                       </form>
@@ -176,4 +240,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Signup;
