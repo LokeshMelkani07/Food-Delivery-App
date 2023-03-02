@@ -30,7 +30,6 @@ const Home = () => {
       <div>
         <Navbar />
       </div>
-      // Carousel
       <div
         style={{
           width: "100%",
@@ -95,7 +94,11 @@ const Home = () => {
                 src="https://source.unsplash.com/random/300×300?pasta"
                 className="d-block w-100"
                 alt="Food image 1"
-                style={{ filter: "brightness(30%)", objectFit: "contain" }}
+                style={{
+                  filter: "brightness(30%)",
+                  objectFit: "fill",
+                  height: "fit-content",
+                }}
               />
             </div>
             <div className="carousel-item">

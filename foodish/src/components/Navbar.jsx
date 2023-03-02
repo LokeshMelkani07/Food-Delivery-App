@@ -1,9 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const location = useLocation();
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    localStorage.removeItem("authToken");
+    navigate("/login");
+  };
   return (
     <div style={{ opacity: "0.7" }}>
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -32,48 +37,87 @@ const Navbar = () => {
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul className="navbar-nav">
+            <ul className="navbar-nav me-auto mb-2">
               <li className="nav-item">
                 <Link
-                  className="nav-link active"
+                  className="nav-link fs-5 active"
                   aria-current="page"
                   to="/"
                   style={{
                     color: location.pathname === "/" ? "#FAA0A0" : "white",
                     fontWeight: location.pathname === "/" ? "bold" : "inherit",
+                    paddingTop: "15px",
                   }}
                 >
                   Home
                 </Link>
               </li>
-              <li className="nav-item">
+              {localStorage.getItem("authToken") ? (
+                <li className="nav-item">
+                  <Link
+                    className="nav-link fs-5 active"
+                    aria-current="page"
+                    to="/"
+                    style={{
+                      color: location.pathname === "/" ? "#FAA0A0" : "white",
+                      fontWeight:
+                        location.pathname === "/" ? "bold" : "inherit",
+                      paddingTop: "15px",
+                    }}
+                  >
+                    My Orders
+                  </Link>
+                </li>
+              ) : (
+                ""
+              )}
+            </ul>
+            {!localStorage.getItem("authToken") ? (
+              <div className="d-flex">
                 <Link
-                  className="nav-link"
+                  className="btn bg-white text-black mx-1 font-weight-bold"
                   to="/login"
                   style={{
-                    color: location.pathname === "/login" ? "#FAA0A0" : "white",
-                    fontWeight:
-                      location.pathname === "/login" ? "bold" : "inherit",
+                    fontWeight: "bold",
                   }}
                 >
-                  Login
+                  <i class="fa-solid fa-right-to-bracket"></i>
+                  <span className="mx-2">Login</span>
                 </Link>
-              </li>
-              <li className="nav-item">
                 <Link
-                  className="nav-link"
+                  className="btn bg-white text-black mx-1"
                   to="/createUser"
                   style={{
-                    color:
-                      location.pathname === "/createUser" ? "#FAA0A0" : "white",
-                    fontWeight:
-                      location.pathname === "/createUser" ? "bold" : "inherit",
+                    fontWeight: "bold",
                   }}
                 >
-                  Signup
+                  <i class="fa-solid fa-user-plus"></i>
+                  <span className="mx-2">Signup</span>
                 </Link>
-              </li>
-            </ul>
+              </div>
+            ) : (
+              <div className="d-flex">
+                <button
+                  className="btn bg-white text-black mx-1 font-weight-bold"
+                  style={{
+                    fontWeight: "bold",
+                  }}
+                >
+                  <i class="fa-solid fa-cart-shopping"></i>
+                  <span className="mx-2">My Cart</span>
+                </button>
+                <button
+                  className="btn bg-white text-danger mx-1 font-weight-bold"
+                  style={{
+                    fontWeight: "bold",
+                  }}
+                  onClick={handleLogout}
+                >
+                  <i class="fa-solid fa-right-from-bracket"></i>
+                  <span className="mx-2">Logout</span>
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </nav>

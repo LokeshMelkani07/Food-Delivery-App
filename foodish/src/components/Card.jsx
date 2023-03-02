@@ -17,11 +17,18 @@ const Card = (props) => {
           src={props.imgSrc}
           className="card-img-top"
           alt="..."
-          style={{ width: "auto", objectFit: "cover", height: "171px" }}
+          style={{ width: "auto", objectFit: "fill", height: "171px" }}
         />
         <div className="card-body">
           <h5 className="card-title">{props.foodName}</h5>
-          <p className="card-text" style={{ overflow: "hidden" }}>
+          <p
+            className="card-text"
+            style={{
+              whiteSpace: "nowrap",
+              overflow: "hidden",
+              textOverflow: "ellipsis",
+            }}
+          >
             {props.desc}
           </p>
           <div className="container w-100">
@@ -35,7 +42,7 @@ const Card = (props) => {
               })}
             </select>
 
-            <select className="m-2 h-100 bg-success rounded">
+            <select className="m-2 h-100 bg-secondary rounded">
               {priceOptions.map((data) => {
                 return (
                   <option key={data} value={data}>
