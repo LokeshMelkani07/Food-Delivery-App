@@ -12,7 +12,7 @@ const Login = () => {
   const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const url = "http://localhost:5000/api/loginUser";
+    const url = "https://foodishmernbackend.onrender.com/api/loginUser";
     const response = await fetch(url, {
       method: "POST",
       headers: {

@@ -20,7 +20,7 @@ export default function Cart() {
 
   const handleCheckout = async () => {
     let userEmail = localStorage.getItem("userEmail");
-    const url = "http://localhost:5000/api/orderData";
+    const url = "https://foodishmernbackend.onrender.com/api/orderData";
     const response = await fetch(url, {
       method: "POST",
       headers: {

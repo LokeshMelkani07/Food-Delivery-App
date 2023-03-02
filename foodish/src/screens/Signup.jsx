@@ -14,7 +14,7 @@ const Signup = () => {
   const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const url = "http://localhost:5000/api/createUser";
+    const url = "https://foodishmernbackend.onrender.com/api/createUser";
     const response = await fetch(url, {
       method: "POST",
       headers: {

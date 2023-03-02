@@ -9,12 +9,15 @@ const Home = () => {
   const [search, setSearch] = useState("");
 
   const loadData = async () => {
-    let response = await fetch("http://localhost:5000/api/foodData", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    let response = await fetch(
+      "https://foodishmernbackend.onrender.com/api/foodData",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
     const res = await response.json();
     // console.log(res[0], res[1]);
     setFoodItems(res[0]);
