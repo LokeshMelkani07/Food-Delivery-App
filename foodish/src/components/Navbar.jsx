@@ -1,10 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useLocation, useNavigate } from "react-router-dom";
+import Modal from "../Modal";
+import Cart from "../screens/Cart";
+import { useCart } from "./ContextReducer";
 
 const Navbar = () => {
   const location = useLocation();
   const navigate = useNavigate();
+  const [cartView, setCartView] = useState(false);
+  let data = useCart();
   const handleLogout = () => {
     localStorage.removeItem("authToken");
     navigate("/login");
@@ -102,10 +107,27 @@ const Navbar = () => {
                   style={{
                     fontWeight: "bold",
                   }}
+                  onClick={() => setCartView(true)}
                 >
                   <i class="fa-solid fa-cart-shopping"></i>
-                  <span className="mx-2">My Cart</span>
+                  <span className="mx-2">
+                    My Cart{" "}
+                    {data.length === 0 ? (
+                      ""
+                    ) : (
+                      <span class="badge badge-dark bg-danger mx-2 text-black">
+                        {data.length}
+                      </span>
+                    )}
+                  </span>
                 </button>
+                {cartView ? (
+                  <Modal onClose={() => setCartView(false)}>
+                    <Cart />
+                  </Modal>
+                ) : (
+                  ""
+                )}
                 <button
                   className="btn bg-white text-danger mx-1 font-weight-bold"
                   style={{
