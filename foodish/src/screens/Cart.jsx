@@ -1,8 +1,12 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 // import Delete from "@material-ui/icons/Delete";
 import { useCart, useDispatchCart } from "../components/ContextReducer";
+import StripeCheckout from "react-stripe-checkout";
+
 export default function Cart() {
   let data = useCart();
+  let navigate = useNavigate();
   let dispatch = useDispatchCart();
   if (data.length === 0) {
     return (
@@ -13,6 +17,7 @@ export default function Cart() {
       </div>
     );
   }
+
   const handleCheckout = async () => {
     let userEmail = localStorage.getItem("userEmail");
     const url = "http://localhost:5000/api/orderData";
@@ -33,10 +38,14 @@ export default function Cart() {
       dispatch({ type: "DROP" });
     }
   };
+  const onToken = (token) => {
+    console.log(token);
+    handleCheckout();
+    navigate("/");
+  };
   let totalPrice = data.reduce((total, food) => total + food.price, 0);
   return (
     <div>
-      {console.log(data)}
       <div
         className="container m-auto mt-5 table-responsive  table-responsive-sm table-responsive-md "
         style={{ width: "100%", height: "240px", overflow: "auto" }}
@@ -81,8 +90,8 @@ export default function Cart() {
           Total Price: <span style={{ color: "red" }}>{totalPrice}</span> /-
         </h1>
       </div>
-      <div>
-        <button
+      <div className="d-flex">
+        {/* <button
           className="btn mx-2 mt-1 mb-5"
           style={{ background: "red", fontWeight: "bold", color: "black" }}
           onClick={handleCheckout}
@@ -90,6 +99,16 @@ export default function Cart() {
           {" "}
           Check Out{" "}
         </button>
+    */}
+        <div className="my-2 mx-2">
+          <StripeCheckout
+            token={onToken}
+            stripeKey="pk_test_51LC2NxSI0MGahHVvswsQ9U6wYwWPq0TwgIsaW9TfBwfrbJ1DDPunX0YRMTZAhAG1AJEpRxffxas4GZXfm4Bhz4vD00lrcjiAsa"
+            name="Foodish Order Payment"
+            currency="INR"
+            amount={totalPrice * 100}
+          />
+        </div>
       </div>
     </div>
   );

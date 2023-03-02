@@ -6,7 +6,6 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Card = (props) => {
-  console.log("props.fooditem is ", props.foodItem);
   const dispatch = useDispatchCart();
   const data = useCart();
   const priceRef = useRef("");
