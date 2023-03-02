@@ -150,6 +150,7 @@ const Home = () => {
       <div className="container">
         {foodCategory !== []
           ? foodCategory.map((data) => {
+              console.log("data from foodCategory is ", data);
               return (
                 <div className="row mb-3">
                   <div key={data._id} className="fs-3 m-3">
@@ -161,9 +162,7 @@ const Home = () => {
                       .filter(
                         (item) =>
                           item.CategoryName === data.CategoryName &&
-                          item.CategoryName.toLowerCase().includes(
-                            search.toLowerCase()
-                          )
+                          item.name.toLowerCase().includes(search.toLowerCase())
                       )
                       .map((filteredItems) => {
                         return (
@@ -185,7 +184,9 @@ const Home = () => {
               );
             })
           : ""}
+        {/*
         <Card foodItems={foodItems} foodCategory={foodCategory} />
+        */}
       </div>
       <div>
         <Footer />

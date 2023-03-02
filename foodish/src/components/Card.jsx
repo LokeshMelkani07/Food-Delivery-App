@@ -6,6 +6,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Card = (props) => {
+  console.log("props.fooditem is ", props.foodItem);
   const dispatch = useDispatchCart();
   const data = useCart();
   const priceRef = useRef("");
@@ -29,7 +30,7 @@ const Card = (props) => {
   const handleAddToCart = async () => {
     toast.success("Item Added To Cart Successfully", {
       position: "top-center",
-      autoClose: 3000,
+      autoClose: 1000,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,
@@ -69,6 +70,7 @@ const Card = (props) => {
           price: finalPrice,
           quantity: quantity,
           size: size,
+          img: props.foodItem.img,
         });
         console.log("Size different so simply ADD one more to the list");
         return;
@@ -83,6 +85,7 @@ const Card = (props) => {
       price: finalPrice,
       quantity: quantity,
       size: size,
+      img: props.foodItem.img,
     });
   };
 

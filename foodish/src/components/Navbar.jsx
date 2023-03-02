@@ -12,6 +12,7 @@ const Navbar = () => {
   let data = useCart();
   const handleLogout = () => {
     localStorage.removeItem("authToken");
+    localStorage.removeItem("userEmail");
     navigate("/login");
   };
   return (
@@ -62,11 +63,16 @@ const Navbar = () => {
                   <Link
                     className="nav-link fs-5 active"
                     aria-current="page"
-                    to="/"
+                    to="/myOrderData"
                     style={{
-                      color: location.pathname === "/" ? "#FAA0A0" : "white",
+                      color:
+                        location.pathname === "/myOrderData"
+                          ? "#FAA0A0"
+                          : "white",
                       fontWeight:
-                        location.pathname === "/" ? "bold" : "inherit",
+                        location.pathname === "/myOrderData"
+                          ? "bold"
+                          : "inherit",
                       paddingTop: "15px",
                     }}
                   >
