@@ -13,7 +13,26 @@ export default function Cart() {
       </div>
     );
   }
-
+  const handleCheckout = async () => {
+    let userEmail = localStorage.getItem("userEmail");
+    const url = "http://localhost:5000/api/orderData";
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        order_data: data,
+        email: userEmail,
+        order_date: new Date().toDateString(),
+      }),
+    });
+    console.log("order res ", response);
+    if (response.status === 200) {
+      // As we do checkout we need our table data to get cleared so we make another case in reducer by name "DROP"
+      dispatch({ type: "DROP" });
+    }
+  };
   let totalPrice = data.reduce((total, food) => total + food.price, 0);
   return (
     <div>
@@ -66,6 +85,7 @@ export default function Cart() {
         <button
           className="btn mx-2 mt-1 mb-5"
           style={{ background: "red", fontWeight: "bold", color: "black" }}
+          onClick={handleCheckout}
         >
           {" "}
           Check Out{" "}

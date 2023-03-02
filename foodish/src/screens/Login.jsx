@@ -37,6 +37,7 @@ const Login = () => {
         theme: "dark",
       });
       localStorage.setItem("authToken", json.authToken);
+      localStorage.setItem("userEmail", credentials.email);
       console.log(localStorage.getItem("authToken"));
       navigate("/");
     } else {
@@ -143,7 +144,7 @@ const Login = () => {
                               color: "black",
                             }}
                           >
-                            Already has an account
+                            Create a new account
                           </Link>
                         </div>
                       </form>
