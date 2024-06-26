@@ -1,5 +1,9 @@
 # Food-Delivery-App
 This is a Food Delivery App made using MERN Stack
+Test Email: loki1234@gmail.com
+Test Password: loki1234
+
+Important: The images in the Carousel are not showing up because the unsplash API used for it, is not working.
 
 Live Link Frontend: https://foodish-mern-lokesh.netlify.app/
 Live Link Backend: https://foodishmernbackend.onrender.com
